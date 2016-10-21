@@ -1,0 +1,90 @@
+/*Overwite BS CSS*/
+
+.clear{
+	clear:both;
+}
+.nav-bar{
+  border-bottom:1px solid #EAEAEA;
+  padding-bottom: 10px;
+}
+
+.nav-bar li[role="presentation"]{
+	margin-top:17px;
+}
+
+.nav-bar li[role="presentation"].first{
+	margin-left:100px;
+}
+
+.nav-bar .nav-pills>li {
+    float: right;
+}
+
+.console-panel{
+	padding:0px;
+}
+
+.console-panel ul{
+margin: 0px;
+padding: 0px;
+list-style-type: none;
+
+}
+
+.console-panel ul li a{
+	display: block;
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	color:#333;
+	border-left:1px solid transparent;
+	transition:all 0.2s;
+	-webkit-transition:all 0.2s;
+
+}
+
+.console-panel ul li a span{
+	padding-right: 1px;
+	transition:all 0.2s;
+	-webkit-transition:all 0.2s;
+}
+
+
+
+.console-panel ul li a:hover{
+	text-decoration: none;
+	background: #333;
+	color:#fff;
+	border-left:10px solid #8fc800;
+}
+
+.console-panel ul li a:hover span{
+	color:#8fc800;
+	padding-right: 5px;
+}
+
+.console-panel ul li:nth-child(last){
+	border-bottom: none;
+	border-radius:0px 0px 5px 5px;
+}
+
+.console-panel ul li a.active{
+	text-decoration: none;
+	background: #333;
+	color:#fff;
+	border-left:10px solid #8fc800;
+}
+.console-panel ul li a.active span{
+	color:#8fc800;
+	padding-right: 5px;
+}
+
+.height100percent{
+	padding-bottom: 10px;
+}
+
+@media (min-width: 990px){
+	.height100percent{
+	height: 100%;
+	padding-bottom: 0px;
+}
+}
