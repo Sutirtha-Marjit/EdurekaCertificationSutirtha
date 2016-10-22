@@ -1,0 +1,16 @@
+{
+  "name": "edureka-certification-sutirtha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "engine.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sutirtha.marjit@gmail.com",
+  "license": "ISC",
+  "dependencies":{
+	  "chalk":"*",
+	  "express":"*",
+	  "body-parser":"*"
+  }	
+}
