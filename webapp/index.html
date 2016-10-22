@@ -9,7 +9,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="nav-bar">
-				<div class="col-md-3"><h2>Employee Directory</h2></div>
+				<div class="col-md-3"><h1>Employee Directory</h1></div>
 				<div class="col-md-9">
 					<ul class="nav nav-pills">						
   						<li role="presentation"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
@@ -44,25 +44,23 @@
 
 			</div>
 			<div class="col-md-10">
-				<h1>Welcome!</h1>
-
+					
 				<!--LIST OF EMPLOYEES:Start-->
 				<div data-segment="list-employee">
-				<h3 class="text-success">List of Employee</h3>
+				<h3>List of Employee</h3>
 				<hr/>
 				<table class="table table-striped">
-					<thead>
-						
+					<thead>						
 						<tr>
-							<th>Name</th><th>Email</th><th>Date of Birth</th><th>Department</th><th>Gender</th>
+							<th>id</th><th>Name</th><th>Email</th><th>Date of Birth</th><th>Department</th><th>Gender</th>
 						</tr>	
 					<thead>
 					<tbody>
 						<tr>
-							<td>Name</td><td>Email</td><td>Date of Birth</td><td>Department</td><td>Gender</td>
+							<td>79777qw</td><td>Name</td><td>Email</td><td>Date of Birth</td><td>Department</td><td>Gender</td>
 						</tr>
 						<tr>
-							<td>Name</td><td>Email</td><td>Date of Birth</td><td>Department</td><td>Gender</td>
+							<td>79777qw</td><td>Name</td><td>Email</td><td>Date of Birth</td><td>Department</td><td>Gender</td>
 						</tr>
 					</tbody>	
 				</table>	
@@ -71,7 +69,7 @@
 
 				<!--Add EMPLOYEES:Start-->
 				<div data-segment="add-employee">
-					<h3 class="text-success">Register new employee</h3>
+					<h3>Register new employee</h3>
 					<hr/>
 					<div class="col-md-6">
 					<form class="form-horizontal">
@@ -97,6 +95,20 @@
 	    				</div>
   						</div>
 
+						<div class="form-group">
+    					<label for="emp-email" class="col-sm-4 control-label">Gender</label>
+    					<div class="col-sm-8">
+      					<label class="control-label">Male</label>
+						<input name="emp-gender" class="control-label" type="radio" />
+
+						<label class="control-label">Female</label> 
+						<input name="emp-gender" class="control-label" type="radio" />
+						
+						<label class="control-label">None</label> 
+						<input name="emp-gender" class="control-label" type="radio" /> 
+	    				</div>
+  						</div>
+
 
   						<div class="form-group">
     					<label for="emp-dept" class="col-sm-4 control-label">Department</label>
@@ -107,6 +119,15 @@
       					</select>	
 	    				</div>
   						</div>
+						
+							
+
+						 <div class="form-group">
+							 <div class="col-sm-4"></div>
+							 <div class="col-sm-8">
+							 <button class="btn btn-success">Register</button>
+							 </div>
+						 </div>	  
 					</form>
 				</div>
 				</div>	

@@ -31,6 +31,19 @@ list-style-type: none;
 
 }
 
+ul.nav-pills li a{
+	color:#333;
+}
+
+table.table *{
+	font-size: 12px;
+}
+
+table.table thead{
+	background:#333;
+	color:#fff; 
+}
+
 .console-panel ul li a{
 	display: block;
 	padding: 10px;
