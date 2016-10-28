@@ -6,6 +6,8 @@
 	<link href="style/app.css" type="text/css" rel="stylesheet"/>
 	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
 	<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>	
+	<script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>	
+	<script type="text/javascript" src="script/app.main.js"></script>
 	<script type="text/javascript" src="script/app.config.js"></script>
 </head>
 <body>
@@ -15,7 +17,7 @@
 				<div class="col-md-3"><h1>Employee Directory</h1></div>
 				<div class="col-md-9">
 					<ul class="nav nav-pills">						
-  						<li role="presentation"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+  						<li role="presentation"><a href="/#/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
   						<li role="presentation">
   							<a href="#"><span class="glyphicon glyphicon-search"></span> Search</a>
   						</li>
@@ -34,7 +36,7 @@
   					</div>
   					<div class="panel-body console-panel">
   						<ul>
-  							<li><a class="active" href="#"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add Employee</a></li>
+  							<li><a class="active" href="#/add"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add Employee</a></li>
   							<li><a href="#"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Edit / Delete Employee</a></li>
   							<li><a href="#"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;&nbsp;View Employee</a></li>	
   						</ul>	
@@ -47,95 +49,11 @@
 
 			</div>
 			<div class="col-md-10">
-					
-				<!--LIST OF EMPLOYEES:Start-->
-				<div data-segment="list-employee">
-				<h3>List of Employee</h3>
-				<hr/>
-				<table class="table table-striped">
-					<thead>						
-						<tr>
-							<th>id</th><th>Name</th><th>Email</th><th>Date of Birth</th><th>Department</th><th>Gender</th>
-						</tr>	
-					<thead>
-					<tbody>
-						<tr>
-							<td>79777qw</td><td>Name</td><td>Email</td><td>Date of Birth</td><td>Department</td><td>Gender</td>
-						</tr>
-						<tr>
-							<td>79777qw</td><td>Name</td><td>Email</td><td>Date of Birth</td><td>Department</td><td>Gender</td>
-						</tr>
-					</tbody>	
-				</table>	
-				</div>
-				<!--LIST OF EMPLOYEES:End-->
-
-				<!--Add EMPLOYEES:Start-->
-				<div data-segment="add-employee">
-					<h3>Register new employee</h3>
-					<hr/>
-					<div class="col-md-6">
-					<form class="form-horizontal">
-
-						<div class="form-group">
-	    					<label for="emp-name" class="col-sm-4 control-label">Name</label>
-	    					<div class="col-sm-8">
-	      					<input type="text" class="form-control" id="emp-name" placeholder="Enter name of employee"/>
-	    					</div>
-  						</div>
-
-  						<div class="form-group">
-    					<label for="emp-dob" class="col-sm-4 control-label">Date of birth</label>
-    					<div class="col-sm-8">
-      					<input type="date" class="form-control" id="emp-dob" placeholder="Enter Date of birth"/>
-	    				</div>
-  						</div>
-
-  						<div class="form-group">
-    					<label for="emp-email" class="col-sm-4 control-label">Email</label>
-    					<div class="col-sm-8">
-      					<input type="Email" class="form-control" id="emp-email" placeholder="Enter Email of employee"/>
-	    				</div>
-  						</div>
-
-						<div class="form-group">
-    					<label for="emp-email" class="col-sm-4 control-label">Gender</label>
-    					<div class="col-sm-8">
-      					<label class="control-label">Male</label>
-						<input name="emp-gender" class="control-label" type="radio" />
-
-						<label class="control-label">Female</label> 
-						<input name="emp-gender" class="control-label" type="radio" />
-						
-						<label class="control-label">None</label> 
-						<input name="emp-gender" class="control-label" type="radio" /> 
-	    				</div>
-  						</div>
-
-
-  						<div class="form-group">
-    					<label for="emp-dept" class="col-sm-4 control-label">Department</label>
-    					<div class="col-sm-8">
-      					<select class="form-control" id="emp-dept">
-      						<option>Marketting and Communication</option>
-      						<option>Finance</option>
-      					</select>	
-	    				</div>
-  						</div>
-						
-							
-
-						 <div class="form-group">
-							 <div class="col-sm-4"></div>
-							 <div class="col-sm-8">
-							 <button class="btn btn-success">Register</button>
-							 </div>
-						 </div>	  
-					</form>
-				</div>
+				<div class="content-box">	
+					<ng-view>
+        				Loading...
+        			</ng-view>
 				</div>	
-				<!--Add EMPLOYEES:End-->
-
 			</div>	
 		</div>	
 	</div>	

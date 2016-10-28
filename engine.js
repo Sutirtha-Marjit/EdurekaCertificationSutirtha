@@ -14,7 +14,7 @@ app.use(Express.static('webapp'));
 
 
 app.listen(3000,function(){
-    console.log('working....');
+    console.log(Chalk.blue('Application started at 3000 port...'));
 });
-console.log(process.env)
+
 
