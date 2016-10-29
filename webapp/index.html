@@ -1,61 +1,68 @@
 <!doctype>
 <html ng-app='empDataMantSystem'>
+
 <head>
-	<title>Employee Management System</title>
-	<link href="style/bs/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-	<link href="style/app.css" type="text/css" rel="stylesheet"/>
-	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-	<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>	
-	<script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>	
-	<script type="text/javascript" src="script/app.main.js"></script>
-	<script type="text/javascript" src="script/app.config.js"></script>
+    <title>Employee Management System</title>
+    <link href="style/bs/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="style/app.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="script/app.main.js"></script>
+    <script type="text/javascript" src="script/app.config.js"></script>
+    <script type="text/javascript" src="script/app.controller.registration.js"></script>
 </head>
+
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="nav-bar">
-				<div class="col-md-3"><h1>Employee Directory</h1></div>
-				<div class="col-md-9">
-					<ul class="nav nav-pills">						
-  						<li role="presentation"><a href="/#/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-  						<li role="presentation">
-  							<a href="#"><span class="glyphicon glyphicon-search"></span> Search</a>
-  						</li>
-  						<li role="presentation"><a href="#"><span class="glyphicon glyphicon-earphone"></span> Contact</a></li>
-  					</ul>
-				</div>
-				<div class="clear"></div>					
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-2 height100percent" style="background:#eaeaea;">
-				<br/>
-				<div class="panel panel-default">
-  					<div class="panel-heading"><h3 class="panel-title">
-  						<span class="glyphicon glyphicon-cog"></span> Control panel</h3>
-  					</div>
-  					<div class="panel-body console-panel">
-  						<ul>
-  							<li><a class="active" href="#/add"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add Employee</a></li>
-  							<li><a href="#"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Edit / Delete Employee</a></li>
-  							<li><a href="#"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;&nbsp;View Employee</a></li>	
-  						</ul>	
-    					
-    					
-  					</div>
-				</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="nav-bar">
+                <div class="col-md-3">
+                    <h1>Employee Directory</h1>
+                </div>
+                <div class="col-md-9">
+                    <ul class="nav nav-pills">
+                        <li role="presentation"><a href="/#/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li role="presentation">
+                            <a href="#"><span class="glyphicon glyphicon-search"></span> Search</a>
+                        </li>
+                        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-earphone"></span> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 height100percent" style="background:#eaeaea;">
+                <br/>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-cog"></span> Control panel</h3>
+                    </div>
+                    <div class="panel-body console-panel">
+                        <ul>
+                            <li><a class="" href="#/add"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add Employee</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Edit / Delete Employee</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;&nbsp;View Employee</a></li>
+                        </ul>
+
+
+                    </div>
+                </div>
 
 
 
-			</div>
-			<div class="col-md-10">
-				<div class="content-box">	
-					<ng-view>
-        				Loading...
-        			</ng-view>
-				</div>	
-			</div>	
-		</div>	
-	</div>	
-</body>	
+            </div>
+            <div class="col-md-10">
+                <div class="content-box">
+                    <ng-view>
+                        Loading...
+                    </ng-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
