@@ -103,12 +103,39 @@ table.table thead {
 .appear-preparation {
     opacity: 0;
     transform: translateY(100px);
-	transition: all 1.2s;
+    transition: all 1.2s;
 }
 
 .appear-now {
     opacity: 1;
     transform: translateY(0px);
+}
+
+*[data-segment] {
+    animation: appear-animation 1s;
+    -webkit-animation: appear-animation 1s;
+}
+
+@keyframes appear-animation {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes appear-animation {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 
 
