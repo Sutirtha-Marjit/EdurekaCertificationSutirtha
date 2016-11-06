@@ -1,0 +1,40 @@
+<div data-segment="configuration" ng-controller="DepartmentController">
+    <div ng-include="'templates/include.configmenu.html'"></div>
+    <h3>Enlist new department</h3>
+    <hr/>
+    <div class="col-md-6">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="adminEmail" class="col-sm-2 control-label">Your email</label>
+                <div class="col-sm-10">
+                    <input ng-model="currentAdminEmail" ng-required="true" type="email" class="form-control" id="adminEmail" placeholder="Please enter a valid email here">
+                </div>
+
+            </div>
+            <div class="alert alert-info" role="alert" ng-show="!validCurrentAdminEmail()">
+                <a href="#" class="alert-link">At first please enetr a valid Email</a>
+            </div>
+            <div ng-show="currentAdminEmail.length!==0 && validCurrentAdminEmail()">
+                <div class="form-group">
+                    <label for="toAddDepartmentName" class="col-sm-2 control-label">Department</label>
+                    <div class="col-sm-10">
+                        <input ng-model="toAddDepartmentName" ng-required="true" type="text" class="form-control" id="toAddDepartmentName" placeholder="Name of department">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="toAddDepartmentDesc" class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-10">
+                        <input ng-model="toAddDepartmentDesc" ng-required="true" type="text" class="form-control" id="toAddDepartmentDesc" placeholder="A brief description">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10">
+                        <button class="btn btn-success">Enlist now!</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
