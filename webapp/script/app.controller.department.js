@@ -13,7 +13,7 @@ var DepartmentController = function($scope, $http) {
         return validateEmail($scope.currentAdminEmail);
     };
 
-    
+
 
 
 };
