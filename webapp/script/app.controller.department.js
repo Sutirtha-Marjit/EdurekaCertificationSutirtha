@@ -5,18 +5,38 @@ var DepartmentController = function($scope, $http) {
         return re.test(email);
     }
 
-
-
-    $scope.currentAdminEmail = '';
-    $scope.toAddDepartmentName = '';
-    $scope.toAddDepartmentDesc = '';
-
-    $scope.validCurrentAdminEmail = function() {
-        return validateEmail($scope.currentAdminEmail);
+    $scope.department = {
+        currentAdminEmail: '',
+        toAddDepartmentName: '',
+        toAddDepartmentDesc: ''
     };
 
+    var getRegistrationRequest = function() {
 
+        return {
+            method: 'POST',
+            url: '/post/department',
+            headers: { 'Content-type': 'application/json' },
+            data: $scope.department
+        };
 
+    };
+
+    var registrationSuccess = function() {
+
+    };
+
+    var registrationError = function() {
+
+    };
+
+    $scope.validCurrentAdminEmail = function() {
+        return validateEmail($scope.department.currentAdminEmail);
+    };
+
+    $scope.registerDepartment = function() {
+        $http(getRegistrationRequest()).then(registrationSuccess, registrationError);
+    };
 
 };
 empDataMantSystem.controller('DepartmentController', ['$scope', '$http', DepartmentController]);

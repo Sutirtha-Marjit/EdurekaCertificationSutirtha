@@ -97,6 +97,8 @@ table.table thead {
     padding-bottom: 10px;
 }
 
+
+
 @media (min-width: 990px) {
     .height100percent {
         height: 100%;

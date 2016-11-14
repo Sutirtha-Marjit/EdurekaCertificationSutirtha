@@ -38,7 +38,7 @@ var RegistrationController = function($scope, $http) {
         name: "",
         dob: "",
         email: "",
-        sex: "",
+        sex: "Not to disclose",
         department: ""
     };
 

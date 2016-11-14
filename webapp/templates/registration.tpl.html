@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label for="emp-dob" class="col-sm-4 control-label">Date of birth</label>
                 <div class="col-sm-8">
-                    <input ng-model="emp.dob" ng-required="true" type="date" class="form-control" id="emp-dob" placeholder="Enter Date of birth" />
+                    <input ng-model="emp.dob" ng-required="true" type="date" name="empDOB" class="form-control" id="emp-dob" placeholder="Enter Date of birth" />
                 </div>
             </div>
 
@@ -65,9 +65,8 @@
 
 
 
-            <div class="form-group" ng-click="register()">
+            <div class="form-group" ng-show="!empregistrationform.empDOB.$invalid && empregistrationform.empDOB.$touched && !empregistrationform.empName.$invalid && empregistrationform.empName.$touched && !empregistrationform.empEmail.$invalid && empregistrationform.empEmail.$touched">
                 <div class="col-sm-4">
-
                 </div>
                 <div class="col-sm-8">
                     <button class="btn btn-success" ng-click="">Register</button>

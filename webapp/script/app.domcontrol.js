@@ -3,10 +3,12 @@ var DOM_CONTROL = {
     LinkHighlight: function() {
         var anchors = document.querySelectorAll('a');
         var activeAnchor = document.querySelector('.active');
+        console.log('activeAnchor:');
+        console.log(activeAnchor);
         if (activeAnchor) {
             activeAnchor.setAttribute('class', '');
         }
-
+    
         for (var i = 0; i < anchors.length; i++) {
             if (anchors[i].href === window.location.href) {
                 anchors[i].setAttribute('class', 'active');
@@ -31,9 +33,9 @@ var DOM_CONTROL = {
 };
 
 window.onload = function() {
-    DOM_CONTROL.LinkHighlight();
-    DOM_CONTROL.NavSelection('.nav-pills li a');
-    DOM_CONTROL.NavSelection('div.console-panel ul li a');
+    /* DOM_CONTROL.LinkHighlight();
+     DOM_CONTROL.NavSelection('.nav-pills li a');
+     DOM_CONTROL.NavSelection('div.console-panel ul li a');*/
 };
 
 console.log('DOM_CONTROL loaded');
