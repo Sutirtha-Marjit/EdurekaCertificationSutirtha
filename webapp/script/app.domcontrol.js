@@ -2,9 +2,14 @@ var DOM_CONTROL = {
 
     LinkHighlight: function() {
         var anchors = document.querySelectorAll('a');
+        var activeAnchor = document.querySelector('.active');
+        if (activeAnchor) {
+            activeAnchor.setAttribute('class', '');
+        }
+
         for (var i = 0; i < anchors.length; i++) {
-            if(anchors[i].href === window.location.href){
-                anchors[i].setAttribute('class','active');
+            if (anchors[i].href === window.location.href) {
+                anchors[i].setAttribute('class', 'active');
             }
         }
         // window.location.hash

@@ -14,7 +14,7 @@ module.exports = function(importobject) {
     console.log(Chalk.green(PROP.statusMessage.IMPORT_JOB_DONE));
 
     var routerConfig = function() {
-        var r;
+        var r, rp;
         ServiceManager.manager = PROP.developerinfo;
         ServiceManager.app = app;
         ServiceManager.chalk = Chalk;
@@ -23,12 +23,18 @@ module.exports = function(importobject) {
             for (r in PROP.rest) {
                 ServiceManager.bindRoutes(PROP.rest[r], r);
             }
+
+            for (rp in PROP.post) {
+                ServiceManager.bindPostRoutes(PROP.post[rp], rp);
+            }
         }
     };
 
     this.init = function() {
         app = Express();
         app.use(Express.static(PROP.staticFolder));
+        app.use(BodyParser.json());
+        app.use(BodyParser.urlencoded({ extended: true }));
         routerConfig();
 
     };
@@ -36,7 +42,7 @@ module.exports = function(importobject) {
     this.start = function() {
         console.log(Chalk.green(PROP.statusMessage.APPLICATION_START));
         if (app === null) {
-            console.log(Chalk.red('Something went wrong. Express is not working properly'));
+            console.log(Chalk.red(PROP.statusMessage.EXPRESS_NOT_AVAILABLE));
         } else {
             port = process.env.port || PROP.port;
             app.listen(port, function() {

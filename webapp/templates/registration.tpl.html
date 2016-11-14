@@ -1,28 +1,28 @@
 <!--Add EMPLOYEES:Start-->
-<div data-segment="add-employee"  ng-controller="RegistrationController">
+<div data-segment="add-employee" ng-controller="RegistrationController">
     <h3>Register new employee</h3>
     <hr/>
     <div class="col-md-6">
-        <form class="form-horizontal">
+        <form class="form-horizontal" name="empregistrationform" novalidate>
 
             <div class="form-group">
                 <label for="emp-name" class="col-sm-4 control-label">Name</label>
                 <div class="col-sm-8">
-                    <input ng-model="empName" ng-required="true" type="text" class="form-control" id="emp-name" placeholder="Enter name of employee" />
+                    <input ng-model="emp.name" ng-required="true" name="empName" type="text" class="form-control" id="emp-name" placeholder="Enter name of employee" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="emp-dob" class="col-sm-4 control-label">Date of birth</label>
                 <div class="col-sm-8">
-                    <input ng-model="empDOB" ng-required="true" type="date" class="form-control" id="emp-dob" placeholder="Enter Date of birth" />
+                    <input ng-model="emp.dob" ng-required="true" type="date" class="form-control" id="emp-dob" placeholder="Enter Date of birth" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="emp-email" class="col-sm-4 control-label">Email</label>
                 <div class="col-sm-8">
-                    <input ng-model="empEmail" ng-required="true" type="Email" class="form-control" id="emp-email" placeholder="Enter Email of employee" />
+                    <input ng-model="emp.email" name="empEmail" ng-required="true" type="Email" class="form-control" id="emp-email" placeholder="Enter Email of employee" />
                 </div>
             </div>
 
@@ -30,32 +30,47 @@
                 <label for="emp-email" class="col-sm-4 control-label">Gender</label>
                 <div class="col-sm-8">
                     <label class="control-label">Male</label>
-                    <input name="emp-gender" class="control-label" type="radio" />
+                    <input ng-model="emp.sex" value="Male" name="emp-gender" class="control-label" type="radio" />
 
                     <label class="control-label">Female</label>
-                    <input name="emp-gender" class="control-label" type="radio" />
+                    <input ng-model="emp.sex" value="Female" name="emp-gender" class="control-label" type="radio" />
 
                     <label class="control-label">None</label>
-                    <input name="emp-gender" class="control-label" type="radio" checked />
+                    <input ng-model="emp.sex" value="Not to disclose" name="emp-gender" class="control-label" type="radio" checked />
                 </div>
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group" ng-if="departmentList.length!==0">
                 <label for="emp-dept" class="col-sm-4 control-label">Department</label>
                 <div class="col-sm-8">
-                    <select class="form-control" id="emp-dept"> 
+                    <select class="form-control" id="emp-dept" ng-model="emp.department"> 
 						<option ng-repeat="department in departmentList" value="{{department}}">{{department}}</option>
       					</select>
                 </div>
             </div>
-
-
-
-            <div class="form-group">
+            <div ng-if="departmentList.length===0">
                 <div class="col-sm-4"></div>
+                <div class="text-info col-sm-8">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span> For your information</h4>
+                    <p>
+                        No Departments are available now. So you can create a new department first before registering a new Employee or you can assign the employee to a department later.
+                    </p>
+                    <p>
+                        <a href="#/config-add-department" class="btn btn-small btn-default">Create new department</a>
+                    </p>
+                    <br/><br/>
+                </div>
+            </div>
+
+
+
+            <div class="form-group" ng-click="register()">
+                <div class="col-sm-4">
+
+                </div>
                 <div class="col-sm-8">
-                    <button class="btn btn-success">Register</button>
+                    <button class="btn btn-success" ng-click="">Register</button>
                 </div>
             </div>
         </form>

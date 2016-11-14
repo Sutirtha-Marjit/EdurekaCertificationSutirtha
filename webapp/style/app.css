@@ -21,6 +21,10 @@
     float: right;
 }
 
+.nav-bar .nav-pills>li a.active {
+    background: #eee;
+}
+
 .console-panel {
     padding: 0px;
 }

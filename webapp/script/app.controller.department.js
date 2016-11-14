@@ -5,6 +5,8 @@ var DepartmentController = function($scope, $http) {
         return re.test(email);
     }
 
+
+
     $scope.currentAdminEmail = '';
     $scope.toAddDepartmentName = '';
     $scope.toAddDepartmentDesc = '';

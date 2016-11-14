@@ -1,7 +1,11 @@
 module.exports = {
-    applicationName: '',
+    applicationName: 'Employee Management System',
     port: 4500,
     staticFolder: 'webapp',
+    post: {
+        Registration: '/post/register',
+        Department: '/post/department'
+    },
     rest: {
         Test: '/rest/test/:p',
         Departments: '/rest/departments',
@@ -18,6 +22,10 @@ module.exports = {
         USER_REGISTERED_SUCCESSFULLY: "Employee have been registered successfully",
         USER_REGISTRATION_FAILED: "Registration is unsuccessful. Please try again.",
         MONGODB_NOT_AVAILABLE: "MongoDB is not available. Please check the environment",
+        EXPRESS_NOT_AVAILABLE: "Express is unavailable. Please check the environment"
+    },
+    db: {
+
     },
     developerinfo: {
         name: 'Sutirtha Marjit',
