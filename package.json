@@ -11,12 +11,14 @@
     "dependencies": {
         "chalk": "*",
         "express": "*",
-        "body-parser": "*"
+        "body-parser": "*",
+        "mongoose":"*"  
     },
     "devDependencies": {
         "chalk": "*",
         "express": "*",
         "body-parser": "*",
+        "mongoose":"*",  
         "nodemon": "*"
     }
 

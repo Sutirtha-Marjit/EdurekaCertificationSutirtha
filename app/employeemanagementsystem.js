@@ -10,6 +10,8 @@ module.exports = function(importobject) {
     var PROP = importobject.properties;
     var BodyParser = importobject.bodyparser;
     var ServiceManager = importobject.servicemanager;
+    var Mongoose = importobject.mongoose;
+    var Schema = importobject.schema;
 
     console.log(Chalk.green(PROP.statusMessage.IMPORT_JOB_DONE));
 
