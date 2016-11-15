@@ -5,7 +5,7 @@ var importobject = {
     express: require("express"),
     bodyparser: require("body-parser"),
     mongoose: mongoose,
-    schema : schema,
+    schema : Schema,
     properties: require('./app/properties'),
     servicemanager: require('./app/servicemanager')
 
