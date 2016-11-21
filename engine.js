@@ -5,9 +5,10 @@ var importobject = {
     express: require("express"),
     bodyparser: require("body-parser"),
     mongoose: mongoose,
-    schema : Schema,
+    schema: Schema,
     properties: require('./app/properties'),
-    servicemanager: require('./app/servicemanager')
+    servicemanager: require('./app/servicemanager'),
+    dbmanager: require('./app/dbmanager')
 
 };
 var EmployeeManagementSystem = require("./app/employeemanagementsystem.js");

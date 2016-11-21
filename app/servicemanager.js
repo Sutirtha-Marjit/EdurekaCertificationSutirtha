@@ -28,9 +28,18 @@ module.exports = {
         console.log(request.body.name);
         response.end(JSON.stringify(request.body));
     },
-    postDepartment: function(request, response) {
+    postDepartment: function(request, response) {        
+        if(this.DBManager!==undefined){
+            this.DBManager.postDepartment({
+                department_name:request.body.toAddDepartmentName,
+                department_creator:request.body.currentAdminEmail,
+                department_desc:request.body.toAddDepartmentDesc
+            });
+            response.end(JSON.stringify({success:true}));
+        }else{
+            response.end(JSON.stringify({Error:"DBManager is missing"}));
+        }
         
-        response.end(JSON.stringify(request.body));
     },
     getDepartments: function(request, response) {
         response.contentType('application/javascript');

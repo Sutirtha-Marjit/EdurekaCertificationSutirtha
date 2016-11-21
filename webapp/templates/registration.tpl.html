@@ -65,10 +65,10 @@
 
 
 
-            <div class="form-group" ng-show="!empregistrationform.empDOB.$invalid && empregistrationform.empDOB.$touched && !empregistrationform.empName.$invalid && empregistrationform.empName.$touched && !empregistrationform.empEmail.$invalid && empregistrationform.empEmail.$touched">
+            <div class="form-group">
                 <div class="col-sm-4">
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-8" ng-show="!empregistrationform.empDOB.$invalid && empregistrationform.empDOB.$touched && !empregistrationform.empName.$invalid && empregistrationform.empName.$touched && !empregistrationform.empEmail.$invalid && empregistrationform.empEmail.$touched">
                     <button class="btn btn-success" ng-click="">Register</button>
                 </div>
             </div>

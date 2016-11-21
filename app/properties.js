@@ -22,7 +22,8 @@ module.exports = {
         USER_REGISTERED_SUCCESSFULLY: "Employee have been registered successfully",
         USER_REGISTRATION_FAILED: "Registration is unsuccessful. Please try again.",
         MONGODB_NOT_AVAILABLE: "MongoDB is not available. Please check the environment",
-        EXPRESS_NOT_AVAILABLE: "Express is unavailable. Please check the environment"
+        EXPRESS_NOT_AVAILABLE: "Express is unavailable. Please check the environment",
+        DBMANAGER_CONFIG_IMPROPER: "DBManager configuration is improper. Please check it carefully."
     },
     db: {
 

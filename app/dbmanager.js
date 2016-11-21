@@ -1,4 +1,8 @@
 module.exports = {
+    mongoose:null,
+    schema:null,
+    dbPathLocal:'mongodb://localhost/',
+    dbName:'edurekacertdb',
     collection: {
         department: 'department',
         employee: 'employee'
@@ -16,5 +20,23 @@ module.exports = {
             department_creator: { type: String, required: true },
             department_desc: { type: String },
         }
+    },
+    initConfig:function(successCallBack,errorCallBack){
+        console.log(this.dbName);
+        if(this.mongoose!==null && this.schema!==null){
+            try{
+                //this.mongoose.connect('mongodb://localhost/sutirthatest');
+                successCallBack();
+            }catch(e){
+                errorCallBack();
+            }           
+            
+        }else{
+            console.erreor("Some how the mongoose is not configured properly or they are set to NULL. Please check the code");
+        }
+    },
+    postDepartment:function(dataObject){
+        console.log(dataObject);
     }
+
 };
