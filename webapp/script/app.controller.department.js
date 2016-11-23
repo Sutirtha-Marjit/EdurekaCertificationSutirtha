@@ -5,11 +5,21 @@ var DepartmentController = function($scope, $http) {
         return re.test(email);
     }
 
+    $scope.departmentList = null;
+
     $scope.department = {
         currentAdminEmail: '',
         toAddDepartmentName: '',
         toAddDepartmentDesc: ''
     };
+
+    var getDepartmentListRequest = function(){
+        return {
+            method: 'GET',
+            url:'/rest/departments',
+            headers: { 'Content-type': 'application/json' },
+        }
+    }
 
     var getRegistrationRequest = function() {
 
@@ -22,8 +32,22 @@ var DepartmentController = function($scope, $http) {
 
     };
 
-    var registrationSuccess = function() {
 
+    var getDepartments = function(){
+        $http(getDepartmentListRequest()).then(getDepartmentSuccess,getDepartmentError);
+    }
+
+    var getDepartmentError = function(){
+
+    };
+
+    var getDepartmentSuccess = function(departments){
+        $scope.departmentList = departments.data.data;
+        console.log($scope.departmentList);
+    };
+
+    var registrationSuccess = function() {
+        window.location = "#/config-add-department";
     };
 
     var registrationError = function() {
@@ -37,6 +61,8 @@ var DepartmentController = function($scope, $http) {
     $scope.registerDepartment = function() {
         $http(getRegistrationRequest()).then(registrationSuccess, registrationError);
     };
+
+    getDepartments();
 
 };
 empDataMantSystem.controller('DepartmentController', ['$scope', '$http', DepartmentController]);

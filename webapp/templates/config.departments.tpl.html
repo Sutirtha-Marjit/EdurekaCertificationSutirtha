@@ -1,24 +1,24 @@
-<div data-segment="configuration">
+<div data-segment="configuration" ng-controller="DepartmentController">
     <div ng-include="'templates/include.configmenu.html'"></div>
     <div>
         <h3>Departments</h3>
         <hr/>
-        <div class="row">
+        <div class="row" ng-repeat="department in departmentList">
             <div class="col-md-9">
-                <h4>Department nd ad</h4>
+                <h4>{{department.department_name}}</h4>
                 <h5>
-                    <a href="mailto:sutirtha.marjit@gmail.com">sutirtha.marjit@gmail.com</a>
+                    <a href="mailto:{{department.department_creator}}">{{department.department_creator}}</a>
                 </h5>
             </div>
 
             <div class="col-md-3">
                 <div class="btn-group">
-                    <a class="btn btn-danger btn-small"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a title="Remove {{department.department_name}}" class="btn btn-danger btn-small"><span class="glyphicon glyphicon-trash"></span></a>
                     <a class="btn btn-default btn-small"><span class="glyphicon glyphicon-pencil"></span></a>
                 </div>
             </div>
             <div class="col-md-12">
-                numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, qu
+                {{department.department_desc}}
             </div>
             <div style="clear:both"></div>
             <hr/>

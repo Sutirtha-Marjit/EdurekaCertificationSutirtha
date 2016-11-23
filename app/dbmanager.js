@@ -26,6 +26,8 @@ module.exports = {
         if(this.mongoose!==null && this.schema!==null){
             try{
                 //this.mongoose.connect('mongodb://localhost/sutirthatest');
+                var DepartmentSchema = this.mongoose.Schema(this.bluePrint.department);
+                this.Department = this.mongoose.model(this.collection.department,DepartmentSchema);
                 successCallBack();
             }catch(e){
                 errorCallBack();
@@ -37,9 +39,8 @@ module.exports = {
     },
     postDepartment:function(dataObject){
         this.mongoose.connect('mongodb://localhost/sutirthatest');
-        var DepartmentSchema = this.mongoose.Schema(this.bluePrint.department);
-        var Department = this.mongoose.model(this.collection.department,DepartmentSchema);
-        var currentDepartment = new Department({
+        
+        var currentDepartment = new this.Department({
             department_creator:dataObject.department_creator,
             department_desc:dataObject.department_desc,
             department_name:dataObject.department_name
@@ -48,6 +49,17 @@ module.exports = {
         currentDepartment.save();
         this.mongoose.disconnect();
         
+    },
+    getDepartments:function(serviceCallBack){
+       this.mongoose.connect('mongodb://localhost/sutirthatest');
+       this.Department.find({},function(err,data){
+           serviceCallBack(data);
+       })
+          
+      
+       
+
+       this.mongoose.disconnect();
     }
 
 };

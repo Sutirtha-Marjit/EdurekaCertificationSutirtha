@@ -42,9 +42,18 @@ module.exports = {
         
     },
     getDepartments: function(request, response) {
+        var self = this;
+        var output = {};
         response.contentType('application/javascript');
-        this.serviceObject.developer = this.manager;
-        response.end(JSON.stringify(this.serviceObject));
+        if(self.DBManager!==undefined){
+            self.DBManager.getDepartments(function(departments){
+                output = self.serviceObject;
+                output.developer = self.manager;
+                output.data = departments;
+                response.end(JSON.stringify(output));
+            });
+        }        
+        
     },
     getEmployees: function(request, response) {
         response.contentType('application/javascript');

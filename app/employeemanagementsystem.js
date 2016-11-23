@@ -13,7 +13,8 @@ module.exports = function(importobject) {
     var Mongoose = importobject.mongoose;
     var Schema = importobject.schema;
     var DBManager = importobject.dbmanager;
-
+    Mongoose.Promise = global.Promise;
+    
     console.log(Chalk.green(PROP.statusMessage.IMPORT_JOB_DONE));
 
     var basicDBConfig = function(){

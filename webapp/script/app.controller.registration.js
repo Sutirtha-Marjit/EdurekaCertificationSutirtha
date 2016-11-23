@@ -12,6 +12,23 @@ var RegistrationController = function($scope, $http) {
         return isNAN((new Date(str)).getTime());
     }
 
+    var getDepartmentSuccess = function(departments){
+        $scope.departmentList = departments.data.data;
+        console.log($scope.departmentList);
+    };
+
+    var getDepartmentListRequest = function(){
+        return {
+            method: 'GET',
+            url:'/rest/departments',
+            headers: { 'Content-type': 'application/json' },
+        }
+    }
+
+    var getDepartments = function(){
+        $http(getDepartmentListRequest()).then(getDepartmentSuccess,function(){});
+    }
+
     var getRegistrationRequest = function() {
 
         return {
@@ -55,6 +72,8 @@ var RegistrationController = function($scope, $http) {
 
         }
     };
+
+    getDepartments();
 
 };
 empDataMantSystem.controller('RegistrationController', ['$scope', '$http', RegistrationController]);

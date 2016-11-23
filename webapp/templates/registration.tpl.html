@@ -45,7 +45,7 @@
                 <label for="emp-dept" class="col-sm-4 control-label">Department</label>
                 <div class="col-sm-8">
                     <select class="form-control" id="emp-dept" ng-model="emp.department"> 
-						<option ng-repeat="department in departmentList" value="{{department}}">{{department}}</option>
+						<option ng-repeat="department in departmentList" value="{{department.department_name}}">{{department.department_name}}</option>
       					</select>
                 </div>
             </div>
