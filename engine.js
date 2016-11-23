@@ -16,3 +16,7 @@ var EmployeeManagementSystem = require("./app/employeemanagementsystem.js");
 var emSystem = new EmployeeManagementSystem(importobject);
 emSystem.init();
 emSystem.start();
+
+
+/*Tutorial Points*/
+//CLASS 4 Recording : 110 Minutes : App route

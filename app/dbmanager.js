@@ -4,8 +4,8 @@ module.exports = {
     dbPathLocal:'mongodb://localhost/',
     dbName:'edurekacertdb',
     collection: {
-        department: 'department',
-        employee: 'employee'
+        department: 'Department',
+        employee: 'Employee'
     },
     bluePrint: {
         employee: {
@@ -36,7 +36,18 @@ module.exports = {
         }
     },
     postDepartment:function(dataObject){
-        console.log(dataObject);
+        this.mongoose.connect('mongodb://localhost/sutirthatest');
+        var DepartmentSchema = this.mongoose.Schema(this.bluePrint.department);
+        var Department = this.mongoose.model(this.collection.department,DepartmentSchema);
+        var currentDepartment = new Department({
+            department_creator:dataObject.department_creator,
+            department_desc:dataObject.department_desc,
+            department_name:dataObject.department_name
+        });
+
+        currentDepartment.save();
+        this.mongoose.disconnect();
+        
     }
 
 };

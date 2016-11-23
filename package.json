@@ -8,17 +8,17 @@
     },
     "author": "sutirtha.marjit@gmail.com",
     "license": "ISC",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/Sutirtha-Marjit/EdurekaCertificationSutirtha.git"
+  },
     "dependencies": {
         "chalk": "*",
         "express": "*",
         "body-parser": "*",
         "mongoose":"*"  
     },
-    "devDependencies": {
-        "chalk": "*",
-        "express": "*",
-        "body-parser": "*",
-        "mongoose":"*",  
+    "devDependencies": {          
         "nodemon": "*"
     }
 
