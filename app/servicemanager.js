@@ -25,6 +25,15 @@ module.exports = {
         }
     },
     postRegistration: function(request, response) {
+        if(this.DBManager!==undefined){
+            this.DBManager.postRegistration({
+                name:request.body.name,
+                dob: request.body.dob,
+                email: request.body.email,
+                sex: request.body.sex,
+                department: request.body.department 
+            });
+        }
         console.log(request.body.name);
         response.end(JSON.stringify(request.body));
     },
