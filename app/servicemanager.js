@@ -64,9 +64,35 @@ module.exports = {
         }        
         
     },
+    getCorrectAge : function(dateString){
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+        {
+            age--;
+        }
+        return age;
+    },
     getEmployees: function(request, response) {
+        var self = this;
+        var output = {};
         response.contentType('application/javascript');
-        response.end('{b:10}');
+        if(self.DBManager!==undefined){
+            self.DBManager.getEmployees(function(employees){
+                output = self.serviceObject;
+                output.developer = self.manager;
+                for(var i=0;i<employees.length;i++){
+                    var age = self.getCorrectAge(employees[i].dob);
+                    employees[i].age = age;
+                    
+                }
+                output.data = employees;
+                response.end(JSON.stringify(output));
+            });
+        }
+        
     },
 
     getEmployeesToSearchByName: function(request, response) {

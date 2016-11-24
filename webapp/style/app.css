@@ -144,6 +144,18 @@ table.table thead {
     }
 }
 
+.content-box{
+    height: 100%;
+}
+
+.edit-popup{
+    width: 100%;
+    height: 100%;
+    background: rgba(20,20,20,0.4);
+    position: absolute;
+    left:0;
+    top:0;
+}
 
 /*Angular CSS overrides*/
 

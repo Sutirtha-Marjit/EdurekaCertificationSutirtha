@@ -59,6 +59,14 @@ module.exports = {
         this.mongoose.disconnect();
         
     },
+    getEmployees:function(serviceCallBack){
+       this.mongoose.connect('mongodb://localhost/sutirthatest');
+       this.Employee.find({},function(err,data){
+           serviceCallBack(data);
+       }); 
+
+       this.mongoose.disconnect();
+    },
     getDepartments:function(serviceCallBack){
        this.mongoose.connect('mongodb://localhost/sutirthatest');
        this.Department.find({},function(err,data){
