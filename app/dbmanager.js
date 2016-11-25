@@ -40,6 +40,17 @@ module.exports = {
             console.erreor("Some how the mongoose is not configured properly or they are set to NULL. Please check the code");
         }
     },
+    postToDeleteEmployee:function(dataObject,callback){
+        var self = this;
+        this.mongoose.connect('mongodb://localhost/sutirthatest');
+        this.Employee.findOne({_id:dataObject._id},function(error,employee){
+            if(error){ callback({msg:"error while deleting"}); }
+            employee.remove();
+            self.mongoose.disconnect();
+            callback({msg:"success"});
+        });
+        
+    },
     postRegistration:function(dataObject){
         this.mongoose.connect('mongodb://localhost/sutirthatest');        
         var currentEmployee = new this.Employee(dataObject);

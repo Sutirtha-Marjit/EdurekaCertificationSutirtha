@@ -41,7 +41,7 @@ var RegistrationController = function($scope, $http) {
     };
 
     var registrationSuccess = function() {
-
+        window.location = "/#/update";
     };
 
     var registrationError = function() {

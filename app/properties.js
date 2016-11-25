@@ -4,7 +4,9 @@ module.exports = {
     staticFolder: 'webapp',
     post: {
         Registration: '/post/register',
-        Department: '/post/department'
+        Department: '/post/department',
+        ToDeleteEmployee: '/remove/employee',
+        ToDeleteDepartment:'/remove/department'
     },
     rest: {
         Test: '/rest/test/:p',

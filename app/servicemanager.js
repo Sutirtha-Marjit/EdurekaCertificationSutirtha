@@ -24,6 +24,17 @@ module.exports = {
             console.log(self.chalk.yellow('Router configured with '), self.chalk.bold(path));
         }
     },
+    postToDeleteEmployee: function(request, response){
+        
+        if(this.DBManager!==undefined){
+            this.DBManager.postToDeleteEmployee({_id:request.body.id},function(deleteResponse){
+                
+                response.end(JSON.stringify(deleteResponse));
+            });
+            
+
+        }
+    },
     postRegistration: function(request, response) {
         if(this.DBManager!==undefined){
             this.DBManager.postRegistration({
@@ -81,13 +92,17 @@ module.exports = {
         response.contentType('application/javascript');
         if(self.DBManager!==undefined){
             self.DBManager.getEmployees(function(employees){
+                var locaDataArray=[];
                 output = self.serviceObject;
                 output.developer = self.manager;
                 for(var i=0;i<employees.length;i++){
+                    locaDataArray[i]={};
                     var age = self.getCorrectAge(employees[i].dob);
-                    employees[i].age = age;
-                    
+                    locaDataArray[i]= employees[i]
+                    locaDataArray[i].age = age;
+                    console.log(locaDataArray[i]);
                 }
+                
                 output.data = employees;
                 response.end(JSON.stringify(output));
             });
