@@ -6,7 +6,9 @@ module.exports = {
         Registration: '/post/register',
         Department: '/post/department',
         ToDeleteEmployee: '/remove/employee',
-        ToDeleteDepartment:'/remove/department'
+        ToDeleteDepartment:'/remove/department',
+        ToUpdateEmployee:'/update/employee',
+        ToUpdateDepartment:'/update/department',
     },
     rest: {
         Test: '/rest/test/:p',

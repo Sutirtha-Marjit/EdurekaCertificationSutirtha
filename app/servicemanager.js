@@ -35,6 +35,13 @@ module.exports = {
 
         }
     },
+    postToUpdateEmployee:function(request, response){
+        if(this.DBManager!==undefined){
+            this.DBManager.postToUpdateEmployee(request.body.id,request.body.deletereqobj,function(dataObject){
+                response.end(JSON.stringify(dataObject));
+            });            
+        }
+    },
     postRegistration: function(request, response) {
         if(this.DBManager!==undefined){
             this.DBManager.postRegistration({
@@ -92,17 +99,13 @@ module.exports = {
         response.contentType('application/javascript');
         if(self.DBManager!==undefined){
             self.DBManager.getEmployees(function(employees){
-                var locaDataArray=[];
+                var ageArray=[];
                 output = self.serviceObject;
                 output.developer = self.manager;
                 for(var i=0;i<employees.length;i++){
-                    locaDataArray[i]={};
-                    var age = self.getCorrectAge(employees[i].dob);
-                    locaDataArray[i]= employees[i]
-                    locaDataArray[i].age = age;
-                    console.log(locaDataArray[i]);
-                }
-                
+                    ageArray.push(self.getCorrectAge(employees[i].dob));
+                }       
+                output.ages = ageArray;
                 output.data = employees;
                 response.end(JSON.stringify(output));
             });

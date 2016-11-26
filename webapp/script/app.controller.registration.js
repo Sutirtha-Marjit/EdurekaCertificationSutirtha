@@ -7,9 +7,21 @@ var RegistrationController = function($scope, $http) {
         return re.test(email);
     }
 
-    var invalidDate = function(str) {
+    var getCorrectAge = function(dateString){
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+        {
+            age--;
+        }
+        return age;
+    }
 
-        return isNAN((new Date(str)).getTime());
+    var validDate = function(str) {
+        
+        return !isNaN((new Date(str)).getTime());
     }
 
     var getDepartmentSuccess = function(departments){
@@ -48,7 +60,13 @@ var RegistrationController = function($scope, $http) {
         console.log('error');
     };
 
-    //$scope.departmentList = ["Human Resource", "Finance", "Marketing & Sales", "Web and Communication", "Technical", "Admin", "Corporate affairs"];
+    $scope.validDOB = false;
+
+    $scope.$watch('emp.dob',function(newVal,oldVal){
+
+        $scope.validDOB = validDate(newVal);
+    });
+    
     $scope.departmentList = [];
 
     $scope.emp = {

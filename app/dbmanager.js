@@ -70,6 +70,18 @@ module.exports = {
         this.mongoose.disconnect();
         
     },
+    postToUpdateEmployee:function(id,toUpdateObject,callback){
+        this.mongoose.connect('mongodb://localhost/sutirthatest');
+        var currentUpdateObject = JSON.parse(toUpdateObject);
+        var query = {_id:id};
+        console.log('findOneAndUpdate:');
+        this.Employee.findOneAndUpdate(query,currentUpdateObject,{},function(err,doc){
+            if(err){callback({status:0}); return false;}
+            callback({status:1});
+        });
+        this.mongoose.disconnect();
+        callback({status:1});
+    },
     getEmployees:function(serviceCallBack){
        this.mongoose.connect('mongodb://localhost/sutirthatest');
        this.Employee.find({},function(err,data){

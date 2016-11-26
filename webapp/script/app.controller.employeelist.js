@@ -1,8 +1,11 @@
 var EmployeeListController = function($scope, $http) {
 
     $scope.employeeList = [];
+    $scope.departmentList=[];
+    $scope.ages = [];
     $scope.selectedIndex = null;
     $scope.operationON = false;
+    $scope.toEditEmployee = {};
     
     var getEmployeeListRequest = function(){
         return {
@@ -12,9 +15,34 @@ var EmployeeListController = function($scope, $http) {
         }
     }
 
+    var getDepartmentListRequest = function(){
+        return {
+            method: 'GET',
+            url:'/rest/departments',
+            headers: { 'Content-type': 'application/json' },
+        }
+    }
+
+    var getDepartmentSuccess = function(departments){
+        
+        $scope.departmentList = departments.data.data;        
+    };
+
+    var getDepartments = function(){
+        
+        $http(getDepartmentListRequest()).then(getDepartmentSuccess,function(){alert('error');});
+    }
+
+    
+
     var getEmpListSuccess = function(empList){
-        console.log(empList);
-        $scope.employeeList = empList.data.data;
+        var rawData = empList.data.data;
+        for(var i=0;i<rawData.length;i++){
+            rawData[i].dob = new Date(rawData[i].dob);
+        }
+        $scope.ages = empList.data.ages;
+        $scope.employeeList = rawData;
+        getDepartments();
     };
 
     var getEmpListError = function(error){
@@ -38,9 +66,54 @@ var EmployeeListController = function($scope, $http) {
         $http(getEmployeeListRequest()).then(getEmpListSuccess).then(getEmpListError);
     };
 
+    var diffChecker = function(){
+        var changeArray=[];         
+
+        for(var el in $scope.toEditEmployee){
+            if(el!=='dob'){
+                if($scope.toEditEmployee[el]!== $scope.employeeList[$scope.selectedIndex][el]){
+                    changeArray.push(el);
+                }
+            }else{
+                var t1 = new Date($scope.toEditEmployee[el]).getTime();
+                var t2 = new Date($scope.employeeList[$scope.selectedIndex][el]).getTime();                
+                if(t1!==t2){ changeArray.push(el); }
+            }             
+        }
+        
+        return changeArray;
+    };
+
+    $scope.update = function(){
+        
+        var toUpdate = {};
+        var ch = diffChecker();
+        for(var i=0;i<ch.length;i++){
+            toUpdate[ch[i]] = $scope.toEditEmployee[ch[i]];
+        }   
+
+        $http({
+            method:'POST',
+            url:'/update/employee',
+            data:{id:$scope.toEditEmployee._id,deletereqobj:JSON.stringify(toUpdate)},
+            headers: { 'Content-type': 'application/json' }
+        }).then(function(){
+            window.location('#/update');
+        }).then();
+
+        console.log(toUpdate);
+
+    };
+
     var openEditWindowWith = function(i){
         $scope.operationON = true;
+        $scope.selectedIndex = i;
+        $scope.toEditEmployee = {};
 
+        for(var el in $scope.employeeList[i]){
+            $scope.toEditEmployee[el] = $scope.employeeList[i][el];    
+        }
+        console.log($scope.toEditEmployee);
     };
 
     $scope.operate = function(mode,i){
@@ -53,8 +126,7 @@ var EmployeeListController = function($scope, $http) {
             
             break;
 
-            case "edit":
-            
+            case "edit":            
                 openEditWindowWith(i);
             break;
 
@@ -64,7 +136,9 @@ var EmployeeListController = function($scope, $http) {
         }
     };
 
-    updateList();    
+    updateList();  
+      
+    
 
 }
 

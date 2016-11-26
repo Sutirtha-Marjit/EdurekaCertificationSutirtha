@@ -3,8 +3,7 @@ var DOM_CONTROL = {
     LinkHighlight: function() {
         var anchors = document.querySelectorAll('a');
         var activeAnchor = document.querySelector('.active');
-        console.log('activeAnchor:');
-        console.log(activeAnchor);
+        
         if (activeAnchor) {
             activeAnchor.setAttribute('class', '');
         }
@@ -38,4 +37,4 @@ window.onload = function() {
      DOM_CONTROL.NavSelection('div.console-panel ul li a');*/
 };
 
-console.log('DOM_CONTROL loaded');
+//console.log('DOM_CONTROL loaded');

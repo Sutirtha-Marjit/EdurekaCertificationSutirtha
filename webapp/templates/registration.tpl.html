@@ -15,9 +15,16 @@
             <div class="form-group">
                 <label for="emp-dob" class="col-sm-4 control-label">Date of birth</label>
                 <div class="col-sm-8">
-                    <input ng-model="emp.dob" ng-required="true" type="date" name="empDOB" class="form-control" id="emp-dob" placeholder="Enter Date of birth" />
+                    <input ng-model="emp.dob" ng-required="true" type="text" name="empDOB" class="form-control" id="emp-dob" placeholder="mm/dd/yyyy" />
                 </div>
             </div>
+            <div ng-show="!validDOB && empregistrationform.empDOB.$touched">
+                <div class="col-sm-4"></div>
+                <div class="text-danger col-sm-8">
+                    <h4>Error</h4>
+                    <p>Please check the date carefully!</p>
+                </div>
+            </div>    
 
             <div class="form-group">
                 <label for="emp-email" class="col-sm-4 control-label">Email</label>
@@ -25,6 +32,14 @@
                     <input ng-model="emp.email" name="empEmail" ng-required="true" type="Email" class="form-control" id="emp-email" placeholder="Enter Email of employee" />
                 </div>
             </div>
+            <div ng-show="empregistrationform.empEmail.$invalid && empregistrationform.empEmail.$touched">
+                <div class="col-sm-4">
+                </div>    
+                <div class="text-danger col-sm-8">
+                <h4>Error</h4>
+                <p>Are you sure the email address is correct! Please type it again carefully.</p>
+                </div>
+            </div>    
 
             <div class="form-group">
                 <label for="emp-email" class="col-sm-4 control-label">Gender</label>
@@ -68,7 +83,7 @@
             <div class="form-group">
                 <div class="col-sm-4">
                 </div>
-                <div class="col-sm-8" ng-show="!empregistrationform.empDOB.$invalid && empregistrationform.empDOB.$touched && !empregistrationform.empName.$invalid && empregistrationform.empName.$touched && !empregistrationform.empEmail.$invalid && empregistrationform.empEmail.$touched">
+                <div class="col-sm-8" ng-show="validDOB && !empregistrationform.empDOB.$invalid && empregistrationform.empDOB.$touched && !empregistrationform.empName.$invalid && empregistrationform.empName.$touched && !empregistrationform.empEmail.$invalid && empregistrationform.empEmail.$touched">
                     <button class="btn btn-success" ng-click="register()">Register</button>
                 </div>
             </div>
