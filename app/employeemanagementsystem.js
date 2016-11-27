@@ -20,6 +20,7 @@ module.exports = function(importobject) {
     var basicDBConfig = function(){
         DBManager.mongoose = Mongoose;
         DBManager.schema = Schema;
+        DBManager.chalk = Chalk;
         DBManager.initConfig(
             function(){
                 ServiceManager.DBManager  = DBManager;

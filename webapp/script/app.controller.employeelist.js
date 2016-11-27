@@ -6,6 +6,7 @@ var EmployeeListController = function($scope, $http) {
     $scope.selectedIndex = null;
     $scope.operationON = false;
     $scope.toEditEmployee = {};
+    $scope.recentlyUpdatedId = null;
     
     var getEmployeeListRequest = function(){
         return {
@@ -84,6 +85,13 @@ var EmployeeListController = function($scope, $http) {
         return changeArray;
     };
 
+    $scope.getAnimClass = function(emp){
+        if(emp._id === $scope.recentlyUpdatedId){
+            return "lastEditedAnim";
+        }
+        return "normal";
+    };
+
     $scope.update = function(){
         
         var toUpdate = {};
@@ -97,11 +105,13 @@ var EmployeeListController = function($scope, $http) {
             url:'/update/employee',
             data:{id:$scope.toEditEmployee._id,deletereqobj:JSON.stringify(toUpdate)},
             headers: { 'Content-type': 'application/json' }
-        }).then(function(){
-            window.location('#/update');
+        }).then(function(data){
+            $scope.recentlyUpdatedId = $scope.toEditEmployee._id;
+            $scope.operationON = false;
+            updateList();
         }).then();
 
-        console.log(toUpdate);
+        
 
     };
 

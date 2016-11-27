@@ -1,8 +1,12 @@
 module.exports = {
+    chalk:null,
     mongoose:null,
     schema:null,
     dbPathLocal:'mongodb://localhost/',
-    dbName:'edurekacertdb',
+    dbPathMLAB:'',
+    dbPath:null,
+    localConnectionActive:true,
+    dbName:'sutirthatest',/* edurekacertdb */
     collection: {
         department: 'Department',
         employee: 'Employee'
@@ -22,14 +26,26 @@ module.exports = {
         }
     },
     initConfig:function(successCallBack,errorCallBack){
-        console.log(this.dbName);
+        console.log(this.chalk.green('\nDB initial configuraation started'));
+        if(this.localConnectionActive){
+            this.dbPath = this.dbPathLocal+this.dbName;
+            console.log('db is set to '+this.dbName);
+            console.log(this.chalk.green('DB Path set to '+this.dbPath));
+        }else{
+            this.dbPath = this.dbPathMLAB+this.dbName;
+            console.log('db is set to '+this.dbName);
+            console.log(this.chalk.green('DB Path set to'+this.dbPath));
+        }
+
         if(this.mongoose!==null && this.schema!==null){
             try{
-                //this.mongoose.connect('mongodb://localhost/sutirthatest');
+                
                 var EmployeeSchema = this.mongoose.Schema(this.bluePrint.employee);
                 var DepartmentSchema = this.mongoose.Schema(this.bluePrint.department);
                 this.Department = this.mongoose.model(this.collection.department,DepartmentSchema);
                 this.Employee = this.mongoose.model(this.collection.employee,EmployeeSchema);
+
+                console.log(this.chalk.green('Schemas are defined'));
 
                 successCallBack();
             }catch(e){
@@ -40,6 +56,28 @@ module.exports = {
             console.erreor("Some how the mongoose is not configured properly or they are set to NULL. Please check the code");
         }
     },
+    /*////////////////////@:DELETE DEPARTMENT:Start//////////////////////////// */
+    postToDeleteDepartment:function(dataObject,callback){
+        var self = this;
+        self.mongoose.connect(self.dbPath);
+
+        self.mongoose.connection.once('open',function(){
+
+            self.Department.findOne({_id:dataObject.id},function(error,department){
+            if(error){ callback({status:error}); return false;}
+            if(department){
+                department.remove();
+                callback({status:department});
+            }else{
+                callback({status:null});
+            }            
+            self.mongoose.disconnect();
+        });
+
+        });
+        
+    },
+    /*////////////////////@:DELETE DEPARTMENT:End//////////////////////////// */
     postToDeleteEmployee:function(dataObject,callback){
         var self = this;
         this.mongoose.connect('mongodb://localhost/sutirthatest');
@@ -70,18 +108,50 @@ module.exports = {
         this.mongoose.disconnect();
         
     },
+    /*////////////////////@:UPDATE EMPLOYEE:Start//////////////////////////// */
     postToUpdateEmployee:function(id,toUpdateObject,callback){
-        this.mongoose.connect('mongodb://localhost/sutirthatest');
-        var currentUpdateObject = JSON.parse(toUpdateObject);
-        var query = {_id:id};
-        console.log('findOneAndUpdate:');
-        this.Employee.findOneAndUpdate(query,currentUpdateObject,{},function(err,doc){
-            if(err){callback({status:0}); return false;}
-            callback({status:1});
+        var self = this;
+        self.mongoose.connect(self.dbPath);
+        console.log(self.chalk.green('Employee update request is received by DBManager'));
+
+        self.mongoose.connection.once('open',function(){
+            self.Employee.findOne({_id:id},function(error,employee){
+                if(error){callback(error); return false;}
+                
+                if(employee){
+                    
+                    console.log(self.chalk.blue('\nGot employee '+employee.name+' and update process is about to begin'));
+                    console.log("Update requested :" +JSON.stringify(toUpdateObject));
+                    for(var el in toUpdateObject){
+                       
+                       employee[el] =  toUpdateObject[el];
+                    }
+                    console.log('value update done! not saved to db yet');
+                    console.log('After update document is looking like');
+                    console.log(self.chalk.green('..........................................'));
+                    console.log(employee);
+                    console.log(self.chalk.green('..........................................'));
+
+                    console.log(self.chalk.blue('\nGot updated employee '+employee.name+' and save process is about to begin'));
+                    employee.save(function(error,employee){
+                        console.log(self.chalk.blue('Save process is at last stage'));
+                        if(error){callback(error); return false;}
+                        callback({status:employee});
+                        self.mongoose.disconnect();
+                        console.log(self.chalk.green('Save process is finished'));
+                    });
+                }else{
+                    self.mongoose.disconnect();
+                }
+                
+            });
+
         });
-        this.mongoose.disconnect();
-        callback({status:1});
+       
     },
+    /*////////////////////@:UPDATE EMPLOYEE:End//////////////////////////// */
+
+    /*////////////////////@:GET EMPLOYEES:End//////////////////////////// */
     getEmployees:function(serviceCallBack){
        this.mongoose.connect('mongodb://localhost/sutirthatest');
        this.Employee.find({},function(err,data){

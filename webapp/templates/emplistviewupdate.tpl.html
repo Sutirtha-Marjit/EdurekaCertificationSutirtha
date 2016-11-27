@@ -15,7 +15,8 @@
             </tr>
             </thead>
                 <tbody>
-                    <tr ng-repeat="emp in employeeList">
+                    
+                    <tr ng-repeat="emp in employeeList" class="{{getAnimClass(emp)}}">                        
                         <td><span>{{emp.name}}</span></td>
                         <td><a title="Drop a mail to {{emp.name}}" href="mailto:{{emp.email}}"><span>{{emp.email}}</span></a></td>
                         <td><span>{{ages[$index]}} years</span></td>

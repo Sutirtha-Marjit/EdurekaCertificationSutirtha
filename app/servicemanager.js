@@ -35,10 +35,28 @@ module.exports = {
 
         }
     },
-    postToUpdateEmployee:function(request, response){
+    postToDeleteDepartment: function(request, response){
+        console.log(this.chalk.blue('Request received to delete a department'));
+        var self = this;
         if(this.DBManager!==undefined){
-            this.DBManager.postToUpdateEmployee(request.body.id,request.body.deletereqobj,function(dataObject){
-                response.end(JSON.stringify(dataObject));
+
+            this.DBManager.postToDeleteDepartment({id:request.body.id},function(deleteResponse){
+                var output ={};
+                output.data = deleteResponse;
+                output.developer = self.manager;
+                response.end(JSON.stringify(output));
+            });
+        }
+    },
+    postToUpdateEmployee:function(request, response){
+        var self = this;
+        var output={};
+        if(self.DBManager!==undefined){
+            var deletereqobj = JSON.parse(request.body.deletereqobj);
+            self.DBManager.postToUpdateEmployee(request.body.id,deletereqobj,function(dataObject){
+                output.data = dataObject;
+                output.developer = self.manager;
+                response.end(JSON.stringify(output));
             });            
         }
     },

@@ -43,15 +43,36 @@ var DepartmentController = function($scope, $http) {
 
     var getDepartmentSuccess = function(departments){
         $scope.departmentList = departments.data.data;
-        console.log($scope.departmentList);
+        
     };
 
     var registrationSuccess = function() {
-        window.location = "#/config-add-department";
+        
+        window.location.href = "#/config-list-of-departments";
     };
 
     var registrationError = function() {
 
+    };
+
+    $scope.deleteDepartment = function(i){
+        var ans = confirm('Really want to remove '+$scope.departmentList[i].department_name);
+        if(ans){
+
+            $http({
+            url:'/remove/department',
+            method:'POST',
+            data:{id:$scope.departmentList[i]._id},
+            headers: { 'Content-type': 'application/json' }
+        }).then(function(dataObject){
+            alert(dataObject.data.data.status.department_name+" is removed");
+            getDepartments();
+        }).then(function(){
+            
+        });
+
+        }
+        
     };
 
     $scope.validCurrentAdminEmail = function() {
