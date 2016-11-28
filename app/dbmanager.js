@@ -78,23 +78,45 @@ module.exports = {
         
     },
     /*////////////////////@:DELETE DEPARTMENT:End//////////////////////////// */
+    /*////////////////////@:DELETE EMPLOYEE:Start//////////////////////////// */
     postToDeleteEmployee:function(dataObject,callback){
         var self = this;
-        this.mongoose.connect('mongodb://localhost/sutirthatest');
-        this.Employee.findOne({_id:dataObject._id},function(error,employee){
-            if(error){ callback({msg:"error while deleting"}); }
-            employee.remove();
-            self.mongoose.disconnect();
-            callback({msg:"success"});
+        self.mongoose.connect(self.dbPath);
+        self.mongoose.connection.once('once',function(){
+
+            self.Employee.findOne({_id:dataObject._id},function(error,employee){
+            if(error){ callback({status:error}); self.mongoose.disconnect(); return false; }
+            if(employee){
+                employee.remove(function(){
+                    callback({status:employee});
+                    self.mongoose.disconnect();
+                });
+                
+            }else{
+                callback({status:null});
+                self.mongoose.disconnect();
+            }            
+        });
+
         });
         
     },
-    postRegistration:function(dataObject){
-        this.mongoose.connect('mongodb://localhost/sutirthatest');        
-        var currentEmployee = new this.Employee(dataObject);
-        currentEmployee.save();
-        this.mongoose.disconnect();
+    /*////////////////////@:DELETE EMPLOYEE:End//////////////////////////// */
+    /*////////////////////@:EMPLOYEE REGISTRATION:Start//////////////////////////// */
+    postRegistration:function(dataObject,callback){
+        var self = this;
+        self.mongoose.connect(self.dbPath);
+        self.mongoose.connection.once('open',function(){
+            var currentEmployee = new self.Employee(dataObject);
+            currentEmployee.save(function(error,employee){
+                if(error){callback({status:error}); self.mongoose.disconnect(); return false;}
+                callback({status:currentEmployee});
+                self.mongoose.disconnect();
+            });
+        });
+       
     },
+    /*////////////////////@:EMPLOYEE REGISTRATION:End//////////////////////////// */
     postDepartment:function(dataObject){
         this.mongoose.connect('mongodb://localhost/sutirthatest');
         
@@ -108,6 +130,7 @@ module.exports = {
         this.mongoose.disconnect();
         
     },
+    
     /*////////////////////@:UPDATE EMPLOYEE:Start//////////////////////////// */
     postToUpdateEmployee:function(id,toUpdateObject,callback){
         var self = this;

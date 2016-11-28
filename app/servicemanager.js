@@ -61,17 +61,24 @@ module.exports = {
         }
     },
     postRegistration: function(request, response) {
-        if(this.DBManager!==undefined){
-            this.DBManager.postRegistration({
+        var self = this;
+        if(self.DBManager!==undefined){
+            self.DBManager.postRegistration({
                 name:request.body.name,
                 dob: request.body.dob,
                 email: request.body.email,
                 sex: request.body.sex,
                 department: request.body.department 
+            },function(dataObject){
+                var output = {};
+                output.data = self.serviceObject;
+                output.developer = self.manager; 
+                response.end(JSON.stringify(output));
+
             });
         }
-        console.log(request.body.name);
-        response.end(JSON.stringify(request.body));
+        
+        
     },
     postDepartment: function(request, response) {        
         if(this.DBManager!==undefined){
