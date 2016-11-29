@@ -2,7 +2,7 @@
 <div data-segment="list-employee" ng-controller="SearchResultController">
     <h3>Advanced search & filter</h3>
     <div>
-        <form class="form-inline" ng-submit="processSearch()">
+        <form name="searchform" class="form-inline" ng-submit="processSearch()">
             <div class="form-group">
                 <label class="sr-only" for="exampleInputAmount">Find</label>
                 <div class="input-group">
@@ -23,7 +23,10 @@
          <h4><a href="mailto:{{emp.email}}">{{emp.email}}</a></h4>
 
          <hr/>
-        </div>      
+        </div>
+        <div ng-show="employeeList.length===0 && searchform.$submitted">
+            <h4>No Data found with this key word.</h4>
+        </div>          
     </div>    
 
 </div>

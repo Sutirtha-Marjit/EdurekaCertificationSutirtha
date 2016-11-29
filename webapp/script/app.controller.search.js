@@ -8,10 +8,11 @@ $scope.operationON = false;
 $scope.toEditEmployee = {};
 $scope.recentlyUpdatedId = null;
 
-var getEmployeeListRequest = function(){
+
+var getEmployeeListRequest = function(empname){
         return {
             method: 'GET',
-            url:'/rest/employees',
+            url:'/rest/employees-by-empname/'+empname,
             headers: { 'Content-type': 'application/json' }
         }
     }
@@ -31,7 +32,7 @@ var getEmpListSuccess = function(empList){
     };
 
     var updateList = function(){
-        $http(getEmployeeListRequest()).then(getEmpListSuccess).then(getEmpListError);
+        $http(getEmployeeListRequest($scope.searchText)).then(getEmpListSuccess).then(getEmpListError);
     };
 
 

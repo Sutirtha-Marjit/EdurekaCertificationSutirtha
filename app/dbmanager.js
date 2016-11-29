@@ -193,7 +193,7 @@ module.exports = {
     },
     /*////////////////////@:UPDATE EMPLOYEE:End//////////////////////////// */
 
-    /*////////////////////@:GET EMPLOYEES:End//////////////////////////// */
+    /*////////////////////@:GET EMPLOYEES:Start//////////////////////////// */
     getEmployees:function(callback){
        
        var self = this;
@@ -215,6 +215,21 @@ module.exports = {
 
       // })
        }        
+    },
+    /*////////////////////@:GET EMPLOYEES:Start//////////////////////////// */
+    getEmployeesToSearchByName:function(searchParamObject,callback){
+        var self = this;
+        var regexp = new RegExp("^"+ searchParamObject.empname,"i");
+        if(self.localConnectionActive){ 
+            console.log(self.chalk.green('.................................................'));
+            console.log(self.chalk.green('search employee-list request is received by DBManager'));
+
+            self.Employee.find({name:regexp},function(error,employeeList){
+                console.log(employeeList);
+                callback(employeeList);
+            });
+
+        }
     },
     getDepartments:function(serviceCallBack){
 

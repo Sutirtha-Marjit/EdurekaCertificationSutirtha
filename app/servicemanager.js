@@ -139,18 +139,36 @@ module.exports = {
     },
 
     getEmployeesToSearchByName: function(request, response) {
+        var output = {};
+        var self = this;
+        var searchParamObject={};
         response.contentType('application/javascript');
-        response.end('{bdad:10}');
+        searchParamObject.empname = request.param('empname');        
+        
+        if(self.DBManager!==undefined){
+            self.DBManager.getEmployeesToSearchByName(searchParamObject,function(employees){
+                var ageArray=[];
+                output = self.serviceObject;
+                output.developer = self.manager;
+                for(var i=0;i<employees.length;i++){
+                    ageArray.push(self.getCorrectAge(employees[i].dob));
+                }       
+                output.ages = ageArray;
+                output.data = employees;
+                response.end(JSON.stringify(output));
+            });
+        }
+        
     },
 
     getEmployeesToSearch: function(request, response) {
         response.contentType('application/javascript');
-        response.end('{q:10,q:900}');
+        response.end('{status:"service not available"}');
     },
 
     getEmployeesToSearchByGender: function(request, response) {
         response.contentType('application/javascript');
-        response.end('{q212:10,q:900}');
+         response.end('{status:"service not available"}');
     },
 
     getEmployeesToSearchByDepartments: function(request, response) {
